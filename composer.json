@@ -1,0 +1,22 @@
+{
+    "name": "rashed-dajah/task1.2",
+    "description": "Demo app to learn PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Rashed Dajah"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.8",
+        "ext-pdo": "*"
+    }
+}

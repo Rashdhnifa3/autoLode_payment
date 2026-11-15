@@ -1,0 +1,29 @@
+USE auto_lode;
+
+CREATE TABLE IF NOT EXISTS cards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    card_number VARCHAR(19) NOT NULL,
+    card_holder_name VARCHAR(100) NOT NULL,
+    expiration_date DATE NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    amount DECIMAL(10,2) NOT NULL DEFAULT 200.00,
+    currency ENUM('USD','EUR','GBP') NOT NULL,
+    payment_type ENUM('direct','undirect') NOT NULL,
+    status ENUM('pending','completed','failed') NOT NULL DEFAULT 'pending',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    card_id INT NULL,
+    FOREIGN KEY (card_id) REFERENCES cards(id)
+);
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    age TINYINT UNSIGNED NOT NULL
+);
